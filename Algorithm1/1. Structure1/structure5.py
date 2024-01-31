@@ -1,9 +1,8 @@
 import sys
 word = list(input())
-m = int(sys.stdin.readline())
 cursor = len(word)
 
-for i in range(m):
+for i in range(int(sys.stdin.readline())):
   command = list(input().split())
   if command[0] == "P":
     word.insert(cursor, command[1])
