@@ -1,20 +1,24 @@
 import sys
-word = list(input())
-cursor = len(word)
 
-for i in range(int(sys.stdin.readline())):
-  command = list(input().split())
-  if command[0] == "P":
-    word.insert(cursor, command[1])
-    cursor += 1
-  elif command[0] == "L":
-    if cursor > 0:
-      cursor -= 1
-  elif command[0] == "D":
-    if cursor < len(word):
-      cursor += 1
-  else:
-    if cursor > 0:
-      word.remove(word[cursor-1])
+st1 = list(sys.stdin.readline().rstrip())
+st2 = []
+
+for _ in range(int(sys.stdin.readline())):
+  command = list(sys.stdin.readline().split())
+  if command[0] == "L":
+    if st1:
+     st2.append(st1.pop())
+            
+  elif command[0] == 'D':
+    if st2:
+      st1.append(st2.pop())
       
-print(''.join(word))
+  elif command[0] == 'B':
+    if st1:
+      st1.pop()
+
+  else:
+    st1.append(command[1])
+        
+st1.extend(reversed(st2))
+print(''.join(st1))
